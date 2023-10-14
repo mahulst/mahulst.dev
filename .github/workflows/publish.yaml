@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: master
+          ref: main
       - shell: bash
         run: |
           rm -rf content
@@ -20,7 +20,7 @@ jobs:
         with:
           repository: mahulst/obsidian-vault
           path: content
-          ref: master
+          ref: main
           token: ${{ secrets.GH_TOKEN }}
 
       - shell: bash
