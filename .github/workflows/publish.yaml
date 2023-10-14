@@ -22,11 +22,17 @@ jobs:
           ref: master
           token: ${{ secrets.GH_TOKEN }}
 
+      - shell: bash
+        run: |
+          cd quartz
+          npm install
+          npx quartz build
+
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 13407e049c54d16fe2638517ab7c5172
           projectName: mahulst.dev
-          directory: public
+          directory: quartz/public
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
