@@ -12,19 +12,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: master
-          path: quartz
-
+      - shell: bash
+        run: |
+          rm -rf content
       - name: Checkout vault repo
         uses: actions/checkout@v4
         with:
           repository: mahulst/obsidian-vault
-          path: vault
+          path: content
           ref: master
           token: ${{ secrets.GH_TOKEN }}
 
       - shell: bash
         run: |
-          cd quartz
           npm install
           npx quartz build
 
@@ -33,6 +33,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 13407e049c54d16fe2638517ab7c5172
-          projectName: mahulst.dev
-          directory: quartz/public
+          projectName: mahulst
+          directory: public
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
